@@ -1,0 +1,255 @@
+.form{
+    counter-reset: section;  
+    padding:50px 30px;
+    background: $color-white;
+    border-radius: 10px;
+    box-shadow:2px 2px 2px 2px rgba(96, 98, 100, 0.4);
+    .formSection{
+        position:relative;
+        width:100%;
+        margin-bottom:40px;
+        padding-bottom:40px;
+        border-bottom:1px solid $color-grey;
+        &:before{
+            counter-increment: section;
+            content: counter(section);    
+            position: absolute;
+            left: -55px;
+            top: -10px;
+            height: 60px;
+            width: 60px;
+            font-size:1.1rem;
+            line-height:45px;
+            font-weight:500;
+            color:$color-white;
+            text-align: center;
+            background: $color-blue;
+            border-radius: 50%;
+            border: 5px solid $color-white;
+            box-shadow: -3px 0px 0px 0px rgba(21, 92, 134, 0.5);
+        }
+        .formSectionHeader{
+            margin:0.5rem 0 2rem 1rem;
+            .title{
+                color:$color-blue;
+                font-size:1.1rem;
+                line-height:1.5rem;
+                font-weight:500;
+            }
+        }
+        .formSectionContent{
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            float:left;
+            width:100%;
+            padding:20px;
+            background:$color-grey;
+            border-radius:3px;
+            &:after {
+                content: "";
+                //flex: auto;
+            }
+            &.checkboxes{
+                justify-content: center;align-items:center;
+                .checkboxRow{margin:0.5rem 0;}
+            }
+        }
+
+    }
+    .formRow{
+        position:relative;
+        width:100%;
+        margin-bottom:5px;
+        &.asTableRow{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .formRowTitle{
+            width:100%;
+            float:left;
+            margin-bottom:5px;
+            color:$color-blue;
+            font-weight:400;
+            font-size: 1rem;
+            line-height: 2.3rem;
+        }
+        input:not([type='submit']), textarea, select{
+            width:100%;
+            height:3rem;
+            padding-left:10px;
+            background-color: $color-white;
+            border:3px solid $color-blue-light;
+            &:disabled{
+                opacity:0.6;
+                background-color: $color-grey-light;
+            }
+            &.withPreValue{
+                padding-left:3.5rem;
+            }
+            &.error{
+                border-color:$color-red;
+            }
+            &::placeholder{
+                color:$color-blue-light;
+                font-style: italic;
+            }
+        }
+        select{
+            background-image:url('../images/arrow.png');
+            background-repeat:no-repeat;
+            background-position:right 10px center;
+            background-size:11px;
+        }
+        textarea{
+            height:8rem;
+        }
+        label.error{
+            color:$color-red;
+        }
+        .preValue{
+            position:absolute;
+            display:flex;
+            align-items: center;
+            left:1rem;
+            top:calc(2.3rem + 5px);
+            height: 3rem;
+            color:$color-blue;
+            &.after{
+                left:auto;
+                right:1rem;
+            }
+        }
+        .customOptions{
+            position:absolute;
+            display:none;
+            top:100%;
+            left:0;
+            width:100%;
+            background-color: $color-white;
+            border:3px solid $color-blue-light;
+            border-top:0;
+            z-index:1;
+            li{
+                cursor:pointer;
+                padding:0 10px;
+                &:hover, &.highlighted{
+                    background:$color-blue-light;
+                }
+            }
+        }
+    }
+    .radioRow, .checkboxRow{
+        width:auto;
+        label {
+            display:inline-flex;
+            align-items: center;
+            height:3rem;
+            line-height:3rem;
+            margin-right:1rem;
+            padding:0 1.5rem;
+            border: 2px solid $color-blue-light;
+            color: lighten($color-blue, 20%);
+            border-radius: 3px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            &:hover {
+                color: $color-blue;
+                border: 2px solid $color-blue;
+            }
+        }
+
+        input {
+            display: none;
+            text-transform: capitalize;
+            &:checked + label {
+                background: $color-blue;
+                background-image: url('../images/check.svg');
+                background-position: right;
+                background-repeat: no-repeat;
+                background-size: 25px;
+                color: $color-white;
+                border: 2px solid $color-blue;
+                padding: 5px 30px 5px 20px;
+            }
+        }
+    }
+    .singleCheckbox{
+        label{
+            padding-left: 35px;
+            cursor: pointer;
+            color:$color-blue;
+        }
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            border: none;
+            margin: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 4px;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: $color-grey;
+            &:after{
+                content: "";
+                position: absolute;
+                display: none;
+                left: 9px;
+                top: 2px;
+                width: 8px;
+                height: 15px;
+                border: solid $color-white;
+                border-width: 0 3px 3px 0;
+                transform: rotate(45deg);
+            }
+        }
+        input:checked ~ .checkmark {
+            background-color: $color-blue;
+            &:after{
+                display:block;
+            }
+        }
+    }
+    .photos{
+        &:after{width:156px;}
+    }
+    .photoInput{
+        position:relative;
+        width:156px;
+        height:156px;
+        margin:0.5rem 0;
+        background:$color-blue url('../images/camera.svg') no-repeat center center / cover;
+        border-radius:4px;
+        cursor:pointer;
+        &:hover{
+            background-color: $color-blue-dark;
+        }
+        &.empty{
+            background-size: 35px;
+            background-image: url('../images/camera.svg') !important;
+            .closeButton{
+                display:none;
+            }
+        }
+        input{
+            opacity:0;
+            width:100%;
+            height:100%;
+            cursor:pointer;
+        }
+        .closeButton{
+            position:absolute;
+            top:4px;
+            right:4px;
+            z-index:2;
+            color: $color-white;
+            line-height:initial;
+        }
+    }
+}
